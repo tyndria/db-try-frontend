@@ -1,0 +1,12 @@
+// Import Bulma's and own variables
+@import 'variables.scss';
+// Import the rest of Bulma
+@import '../node_modules/bulma/bulma';
+// Import FontAwesome
+@import '../node_modules/font-awesome/scss/font-awesome';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
