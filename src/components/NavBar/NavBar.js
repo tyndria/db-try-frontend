@@ -1,18 +1,19 @@
 import React from 'react';
-import {Link, BrowserRouter as Router} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = () => (
 	<div className="navbar">
-		<span className="logo">
+		<div className="logo">
 			<Link to="/">DBTry</Link>
-		</span>
+		</div>
 
-		<span>
-			<span className="button"><Link to="/">Statistics</Link></span>
-			<span className="button"><Link to="/">Requests</Link></span>
-			<span className="button"><Link to="/projects" replace>Projects</Link></span>
-		</span>
+		{/*TODO: probably, create config with links and pass here in props*/}
+		<div className="links">
+			<span className="link"><Link to="/">Statistics</Link></span>
+			<span className="link"><Link to="/">Requests</Link></span>
+			<span className="link"><Link to="/projects" replace>Projects</Link></span>
+		</div>
 	</div>
 );
 
