@@ -1,0 +1,19 @@
+@import '../../variables.scss';
+
+.project {
+
+	.option-text {
+		text-align: center;
+		padding: 1.2rem;
+		color: #03a9f4;
+		font-size: 1.7rem;
+	}
+
+	.project-panels {
+		padding: 0 3rem;
+	}
+
+	.project-panel:first-child {
+		margin-right: 2rem;
+	}
+}

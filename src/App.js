@@ -1,16 +1,20 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import NavBar from './components/NavBar/NavBar';
-import ProgressBar from './components/ProgressBar/ProgressBar';
+import Footer from './components/Footer';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <NavBar/>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="app">
+				<NavBar/>
+          		<div className="page-container">
+					{this.props.children}
+				</div>
+				<Footer/>
+			</div>
+		);
+	}
 }
 
 export default App;

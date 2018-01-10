@@ -2,8 +2,10 @@
 @import 'variables.scss';
 // Import the rest of Bulma
 @import '../node_modules/bulma/bulma';
-// Import FontAwesome
-@import '../node_modules/font-awesome/scss/font-awesome';
+
+html, body, #root, .app {
+  height: 100%;
+}
 
 body {
   margin: 0;

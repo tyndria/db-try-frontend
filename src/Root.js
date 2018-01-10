@@ -6,11 +6,10 @@ import Projects from './pages/Projects/Projects';
 
 const Root = () => (
 	<Router>
-		<div>
-			<Route path="/" component={App}/>
+		<App>
 			<Route exact path="/" component={ProgressBar}/>
 			<Route path="/projects" component={Projects}/>
-		</div>
+		</App>
 	</Router>
 );
 
