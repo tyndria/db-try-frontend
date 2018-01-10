@@ -9,10 +9,12 @@ const NavBar = () => (
 		</div>
 
 		{/*TODO: probably, create config with links and pass here in props*/}
-		<div className="links">
-			<span className="link"><Link to="/">Statistics</Link></span>
-			<span className="link"><Link to="/">Requests</Link></span>
-			<span className="link"><Link to="/projects" replace>Projects</Link></span>
+		<div className="navbar-menu">
+			<div className="navbar-end links">
+				<div className="navbar-item link"><Link to="/">Statistics</Link></div>
+				<div className="navbar-item link"><Link to="/">Requests</Link></div>
+				<div className="navbar-item link"><Link to="/projects" replace>Projects</Link></div>
+			</div>
 		</div>
 	</nav>
 );
