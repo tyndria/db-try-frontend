@@ -1,13 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './Project.css';
 import List from '../../components/List';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
 import ProjectListItem from '../../components/ProjectListItem/ProjectListItem';
 
-const projects = [{name: 'personal'}, {name: 'city'}];
-
-const Projects = ({}) => (
+const Projects = ({projects}) => (
 	<div className="card project page">
 		<div className="option-text">Or</div>
 		<div className="columns project-panels">
@@ -29,4 +28,12 @@ const Projects = ({}) => (
 	</div>
 );
 
-export default Projects;
+const mapStateToProps = state => ({
+	projects: state.projectList.projects
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);
