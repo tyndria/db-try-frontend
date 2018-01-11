@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import projectList from './projectList';
+import projectSchemas from './projectSchemas';
 
 const rootReducer = combineReducers({
-	projectList
+	projectList,
+	projectSchemas
 });
 
 export default rootReducer;

@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './ducks/index';
 
-
 const configureStore = () => {
 	const enhancer = composeWithDevTools(
 		applyMiddleware(thunk, logger)

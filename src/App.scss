@@ -6,9 +6,11 @@
 	.page-container {
 		flex: 1;
 		margin: 2rem 6rem;
+		overflow: hidden;
 
 		.page {
 			height: 100%;
+			overflow: hidden;
 		}
 	}
 }

@@ -3,9 +3,9 @@ import Input from '../Input';
 import Button from '../Button';
 import './SchemeField.css';
 
-const SchemeField = () => (
+const SchemeField = ({name, type}) => (
 	<div className="scheme-field">
-		<Input placeholder="Field Name" />
+		<Input placeholder="Field Name" value={name} />
 		<div className="type field is-horizontal">
 			<div className="field-label">
 				<label className="label">Type</label>

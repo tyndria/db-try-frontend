@@ -1,0 +1,22 @@
+.project-schemas {
+	display: flex;
+	flex-direction: column;
+
+	.add-scheme {
+		margin-bottom: 1rem;
+		margin-left: 1rem;
+		/* bad solution */
+		width: 10rem;
+	}
+
+	.schemas-container {
+		flex-wrap: wrap;
+		justify-content: start;
+		overflow-y: scroll;
+		padding: 1rem;
+
+		.scheme-form {
+			margin: 0.5rem;
+		}
+	}
+}
