@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const Button = ({className, iconHelpClass, iconClassName, children}) => (
-	<span className={classNames('button', className)}>
+const Button = ({className, iconHelpClass, iconClassName, children, onClick}) => (
+	<span className={classNames('button', className)} onClick={onClick}>
 		{children && <span>{children}</span>}
 		{iconHelpClass &&
 		<span className={classNames('icon', iconHelpClass)}>
