@@ -11,7 +11,7 @@ const Input = ({
 				   rightIconClass
 }) => (
 	<div className="field">
-		<label className="label">{label}</label>
+		{ label && <label className="label">{label}</label> }
 		<div className={classNames('control', {'has-icons-left': leftIconClass, 'has-icons-right': rightIconClass})}>
 			<input className={classNames('input', successClass)} type="text" placeholder={placeholder} value={defaultValue} />
 			{

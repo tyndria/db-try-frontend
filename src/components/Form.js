@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 
 const Form = ({title, children}) => (
 	<div className="form">
@@ -9,7 +10,7 @@ const Form = ({title, children}) => (
 			{children}
 			<div className="field">
 				<div className="control">
-					<button className="button is-link">OK</button>
+					<Button className="is-link">OK</Button>
 				</div>
 			</div>
 		</nav>

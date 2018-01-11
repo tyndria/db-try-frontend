@@ -1,0 +1,18 @@
+.scheme-field {
+	display: flex;
+
+	.type {
+		margin-left: 0.5rem;
+		/* do the same margin as in Input name field */
+		margin-bottom: 0.75rem;
+
+		.field-label,
+		.field-body {
+			align-self: center;
+		}
+	}
+
+	.remove-field {
+		margin-left: auto;
+	}
+}

@@ -1,15 +1,17 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import Button from '../Button';
 import './ProjectListItem.css';
 
 const ProjectListItem = ({name}) => (
-	<a className="project-list-item panel-block is-active">
-		<span>
+	<span className="project-list-item panel-block is-active">
+		<Link to="/projectSchemas">
 			<span className="panel-icon">
 				<i className="fa fa-book"/>
 			</span>{name}
-		</span>
-		<button className="button is-link is-outlined">Run</button>
-	</a>
+		</Link>
+		<Button className="is-link is-outlined" onClick={e => {e.stopPropagation()}}>Run</Button>
+	</span>
 );
 
 export default ProjectListItem;
