@@ -3,7 +3,7 @@ import Input from '../Input';
 import Button from '../Button';
 import './SchemeField.css';
 
-const SchemeField = ({name, type}) => (
+const SchemeField = ({name, id, type, deleteField}) => (
 	<div className="scheme-field">
 		<Input placeholder="Field Name" value={name} />
 		<div className="type field is-horizontal">
@@ -21,7 +21,7 @@ const SchemeField = ({name, type}) => (
 				</div>
 			</div>
 		</div>
-		<Button className="remove-field is-white" iconHelpClass="is-small" iconClassName="fa-times"/>
+		<Button onClick={() => deleteField(id)} className="remove-field is-white" iconHelpClass="is-small" iconClassName="fa-times"/>
 	</div>
 );
 

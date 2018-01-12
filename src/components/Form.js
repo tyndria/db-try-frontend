@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-const Form = ({title, children}) => (
+const Form = ({title, children, onClick}) => (
 	<div className="form">
 		<nav className="panel">
 			<p className="panel-heading">
@@ -10,7 +10,7 @@ const Form = ({title, children}) => (
 			{children}
 			<div className="field">
 				<div className="control">
-					<Button className="is-link">OK</Button>
+					<Button onClick={onClick} className="is-link">OK</Button>
 				</div>
 			</div>
 		</nav>

@@ -1,36 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getSchemas } from "../../redux/ducks/projectSchemas";
+import { deleteScheme, addEmptyScheme } from "../../redux/ducks/projectSchemas";
 import './ProjectSchemas.css';
 import SchemeForm from '../../components/SchemeForm/SchemeForm';
 import Button from '../../components/Button';
-import uuidv4 from 'uuid/v4';
 
 class ProjectSchemas extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			schemas: props.schemas['345345']
-		};
-
-		this.addEmptyScheme = this.addEmptyScheme.bind(this);
+		this.addField = this.addField.bind(this);
+		this.deleteField = this.deleteField.bind(this);
 	}
 
-	addEmptyScheme() {
-		this.setState((prevState) => ({
-			schemas: [...prevState.schemas, {name: '', fields: [{id: 1, name: '', type: ''}], id: uuidv4()}]
-		}));
+	addField(formId) {
+		console.log('add  field', formId);
+	}
+
+	deleteField(fieldId, formId) {
+		console.log('delete field ', fieldId, formId);
 	}
 
 	render() {
+		const schemeFunctions = {deleteForm: this.props.deleteScheme, addField: this.addField, deleteField: this.deleteField};
+		const schemas = this.props.schemas;
 		return (
 			<div className="project-schemas page">
-				<Button onClick={this.addEmptyScheme} className="add-scheme is-outlined" iconHelpClass="is-small" iconClassName="fa-plus">Add Scheme</Button>
+				<Button onClick={this.props.addEmptyScheme} className="add-scheme is-outlined" iconHelpClass="is-small" iconClassName="fa-plus">Add Scheme</Button>
 				<div className="schemas-container columns">
 					{
-						this.state.schemas.map((scheme) =>
-							<SchemeForm key={scheme.id} className="column" {...scheme}/>
+						Object.keys(schemas).map((schemeId) =>
+							<SchemeForm key={schemeId}
+										id={schemeId}
+										className="column" {...{ ...schemeFunctions, ...schemas[schemeId]}}/>
 						)
 					}
 				</div>
@@ -44,7 +46,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	getSchemas: (id) => dispatch(getSchemas(id)),
+	deleteScheme: (id) => dispatch(deleteScheme(id)),
+	addEmptyScheme: () => dispatch(addEmptyScheme())
 });
 
 

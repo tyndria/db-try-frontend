@@ -4,16 +4,22 @@ import classNames from 'classnames';
 const Input = ({
 				   label,
 				   value,
-				   placeholder,
 				   hintText,
 				   successClass,
 				   leftIconClass,
-				   rightIconClass
+				   rightIconClass,
+				   placeholder,
+				   onChange
 }) => (
 	<div className="field">
 		{ label && <label className="label">{label}</label> }
 		<div className={classNames('control', {'has-icons-left': leftIconClass, 'has-icons-right': rightIconClass})}>
-			<input className={classNames('input', successClass)} type="text" placeholder={placeholder} defaultValue={value} />
+			<input className={classNames('input', successClass)}
+				   type="text"
+				   defaultValue={value}
+				   placeholder={placeholder}
+				   onChange={onChange}
+				   {...this.props} />
 			{
 				leftIconClass &&
 				<span className="icon is-small is-left">
