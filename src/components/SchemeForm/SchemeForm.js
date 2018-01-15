@@ -15,11 +15,17 @@ const SchemeForm = ({name, id, fields, deleteForm, addField, deleteField}) => (
 		<div className="card-content">
 			<Input placeholder="Scheme Name" value={name}/>
 			{
-				Object.keys(fields).map((fieldId) =>
-					<SchemeField key={fieldId} id={fieldId} deleteField={(fieldId) => deleteField(id, fieldId)} {...fields[fieldId]}/>
+				fields && Object.keys(fields).map((fieldId) =>
+					<SchemeField key={fieldId}
+								 id={fieldId}
+								 deleteField={(fieldId) => deleteField(id, fieldId)}
+								 {...fields[fieldId]}/>
 				)
 			}
-			<Button onClick={() => addField(id)} className="is-outlined" iconHelpClass="is-small" iconClassName="fa-plus">
+			<Button onClick={() => addField(id)}
+					className="is-outlined"
+					iconHelpClass="is-small"
+					iconClassName="fa-plus">
 				Add Field
 			</Button>
 		</div>

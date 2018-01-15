@@ -12,7 +12,6 @@ const NavBar = () => (
 		<div className="navbar-menu">
 			<div className="navbar-end links">
 				<div className="navbar-item link"><Link to="/">Statistics</Link></div>
-				<div className="navbar-item link"><Link to="/">Requests</Link></div>
 				<div className="navbar-item link"><Link to="/projects" replace>Projects</Link></div>
 			</div>
 		</div>
