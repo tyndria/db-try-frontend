@@ -6,6 +6,7 @@ import ProgressBar from './components/ProgressBar/ProgressBar.js';
 import App from './App';
 import Projects from './pages/Projects/Projects';
 import ProjectSchemas from './pages/ProjectSchemas/ProjectSchemas.js';
+import ProjectStatistics from './pages/ProjectStatistics/ProjectStatistics';
 
 const store = configureStore();
 
@@ -16,6 +17,7 @@ const Root = () => (
 				<Route exact path="/" component={ProgressBar}/>
 				<Route path="/projects" component={Projects}/>
 				<Route path="/projectSchemas" component={ProjectSchemas}/>
+				<Route path="/projectStatistics" component={ProjectStatistics}/>
 			</App>
 		</Router>
 	</Provider>

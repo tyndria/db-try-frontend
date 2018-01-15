@@ -7,7 +7,7 @@ import Form from '../../components/Form';
 import Input from '../../components/Input';
 import ProjectListItem from '../../components/ProjectListItem/ProjectListItem';
 
-const Projects = ({projects, addProject}) => (
+const Projects = ({projects, addProject, ...props}) => (
 	<div className="card project page">
 		<div className="option-text">Or</div>
 		<div className="columns project-panels">
@@ -21,7 +21,10 @@ const Projects = ({projects, addProject}) => (
 				<List title="Choose Project">
 					{
 						projects.map((item, index) =>
-							<ProjectListItem name={item.name} key={index}/>
+							<ProjectListItem name={item.name} key={index} getStatistics={e => {props.history.push({
+								pathname: '/projectStatistics',
+								state: {}
+							})}}/>
 						)
 					}
 				</List>

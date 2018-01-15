@@ -3,14 +3,14 @@ import {Link} from 'react-router-dom';
 import Button from '../Button';
 import './ProjectListItem.css';
 
-const ProjectListItem = ({name}) => (
+const ProjectListItem = ({name, getStatistics}) => (
 	<span className="project-list-item panel-block is-active">
 		<Link to="/projectSchemas">
 			<span className="panel-icon">
 				<i className="fa fa-book"/>
 			</span>{name}
 		</Link>
-		<Button className="is-link is-outlined" onClick={e => {e.stopPropagation()}}>Run</Button>
+		<Button className="is-link is-outlined" onClick={e => {e.stopPropagation(); getStatistics()}}>Run</Button>
 	</span>
 );
 
