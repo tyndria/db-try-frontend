@@ -1,0 +1,13 @@
+.list {
+	height: 100%;
+
+	.panel {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+
+		.items {
+			overflow-y: scroll;
+		}
+	}
+}

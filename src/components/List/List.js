@@ -1,4 +1,5 @@
 import React from 'react';
+import './List.css';
 
 const List = ({title, children}) => (
 	<div className="list">
@@ -6,7 +7,9 @@ const List = ({title, children}) => (
 			<p className="panel-heading">
 				{title}
 			</p>
-			{ children }
+			<div className="items">
+				{ children }
+			</div>
 		</nav>
 	</div>
 );

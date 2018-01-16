@@ -1,7 +1,6 @@
 @import '../../variables.scss';
 
 .project {
-
 	.option-text {
 		text-align: center;
 		padding: 1.2rem;
@@ -10,6 +9,7 @@
 	}
 
 	.project-panels {
+		height: 100%;
 		padding: 0 3rem;
 	}
 
