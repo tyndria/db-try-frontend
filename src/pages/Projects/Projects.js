@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {addProject, fetchAll} from "../../redux/ducks/projectList";
 import './Project.css';
 import List from '../../components/List/List';
@@ -20,18 +20,23 @@ class Projects extends React.Component {
 				<div className="columns project-panels">
 					<div className="column project-panel">
 						<Form title="Create Project" onClick={() => addProject(this.name)}>
-							<Input onChange={(event) => this.name = event.target.value }
+							<Input onChange={(event) => this.name = event.target.value}
 								   placeholder="Project Name"/>
 						</Form>
 					</div>
 					<div className="column">
 						<List title="Choose Project">
 							{
-								projects.map((item, index) =>
-									<ProjectListItem name={item.name} key={index} getStatistics={e => {this.props.history.push({
-										pathname: '/projectStatistics',
-										state: {}
-									})}}/>
+								projects.map((item) =>
+									<ProjectListItem name={item.name}
+													 key={item.id}
+													 id={item.id}
+													 getStatistics={e => {
+														 this.props.history.push({
+															 pathname: '/projectStatistics',
+															 state: {}
+														 })
+													 }}/>
 								)
 							}
 						</List>
@@ -47,7 +52,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
- 	addProject: (name) => dispatch(addProject(name)),
+	addProject: (name) => dispatch(addProject(name)),
 	fetchAll: () => dispatch(fetchAll())
 });
 

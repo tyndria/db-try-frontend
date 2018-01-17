@@ -3,10 +3,15 @@
 	flex-direction: column;
 
 	.add-scheme {
-		margin-bottom: 1rem;
 		margin-left: 1rem;
 		/* bad solution */
 		width: 10rem;
+	}
+
+	.project-name {
+		align-self: center;
+		font-weight: bold;
+		text-transform: uppercase;
 	}
 
 	.schemas-container {

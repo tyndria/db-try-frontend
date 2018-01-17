@@ -3,26 +3,52 @@ import Input from '../Input';
 import Button from '../Button';
 import './SchemeField.css';
 
-const SchemeField = ({name, id, type, deleteField}) => (
-	<div className="scheme-field">
-		<Input placeholder="Field Name" value={name} />
-		<div className="type field is-horizontal">
-			<div className="field-label">
-				<label className="label">Type</label>
-			</div>
-			<div className="field-body">
-				<div className="select">
-					<select>
-						<option>String</option>
-						<option>Number</option>
-						<option>Boolean</option>
-						<option>Object</option>
-					</select>
+class SchemeField extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			name: props.name || '',
+			type: props.type || 'String'
+		};
+	}
+
+	onNameChange(e) {
+		this.setState({name: e.target.value}, () => {
+			this.props.onChange(this.state);
+		});
+	}
+
+	onTypeChange(e) {
+		this.setState({type: e.target.value}, () => {
+			this.props.onChange(this.state);
+		});
+	}
+
+	render() {
+		const {name, id, type, deleteField} = this.props;
+		return (
+			<div className="scheme-field">
+				<Input placeholder="Field Name" value={name} onChange={(e) => this.onNameChange(e)}/>
+				<div className="type field is-horizontal">
+					<div className="field-label">
+						<label className="label">Type</label>
+					</div>
+					<div className="field-body">
+						<div className="select">
+							<select value={type} onChange={(e) => this.onTypeChange(e)}>
+								<option>String</option>
+								<option>Number</option>
+								<option>Boolean</option>
+								<option>Object</option>
+							</select>
+						</div>
+					</div>
 				</div>
+				<Button onClick={() => deleteField(id)} className="remove-field is-white" iconHelpClass="is-small" iconClassName="fa-times"/>
 			</div>
-		</div>
-		<Button onClick={() => deleteField(id)} className="remove-field is-white" iconHelpClass="is-small" iconClassName="fa-times"/>
-	</div>
-);
+		);
+	}
+}
 
 export default SchemeField;

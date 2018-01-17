@@ -1,43 +1,16 @@
 import uuidv4 from 'uuid/v4';
 import { combineReducers } from 'redux';
 
-export const GET_SCHEMAS = 'GET_SCHEMAS';
 export const DELETE_SCHEME = 'DELETE_SCHEME';
 export const ADD_EMPTY_SCHEME = 'ADD_EMPTY_SCHEME';
+export const SAVE_SCHEME = 'SAVE_SCHEME';
 export const ADD_EMPTY_FIELD = 'ADD_EMPTY_FIELD';
 export const DELETE_FIELD = 'DELETE_FIELD';
 
+
 const DEFAULT_STATE = {
-	schemas: {
-		1: {
-			name: 'dog'
-		},
-		2: {
-			name: 'cat'
-		}
-	},
-	fields: {
-		1: {
-			'1': {
-				name: 'name',
-				type: 'string'
-			},
-			'2': {
-				name: 'age',
-				type: 'number'
-			}
-		},
-		2: {
-			'1': {
-				name: 'name',
-				type: 'string'
-			},
-			'2': {
-				name: 'age',
-				type: 'number'
-			}
-		}
-	}
+	schemas: {},
+	fields: {}
 };
 
 const EMPTY_FIELD = {
@@ -69,6 +42,12 @@ export const deleteField = (schemeId, fieldId) => ({
 	fieldId
 });
 
+export const saveScheme = (id, scheme) =>({
+	type: SAVE_SCHEME,
+	id,
+	scheme
+});
+
 const schemas = (state = DEFAULT_STATE.schemas, action) => {
 	switch(action.type) {
 		case DELETE_SCHEME:
@@ -76,6 +55,8 @@ const schemas = (state = DEFAULT_STATE.schemas, action) => {
 			return updatedSchemas;
 		case ADD_EMPTY_SCHEME:
 			return {...state, [uuidv4()]: EMPTY_SCHEME};
+		case SAVE_SCHEME:
+			return {...state, [action.id]: action.scheme};
 		default:
 			return state;
 	}

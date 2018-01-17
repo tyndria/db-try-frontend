@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteScheme, addEmptyScheme, addEmptyField, deleteField } from "../../redux/ducks/projectSchemas";
+import { deleteScheme, addEmptyScheme, addEmptyField, deleteField, saveScheme } from "../../redux/ducks/projectSchemas";
 import './ProjectSchemas.css';
 import SchemeForm from '../../components/SchemeForm/SchemeForm';
 import Button from '../../components/Button';
@@ -8,14 +8,22 @@ import Button from '../../components/Button';
 class ProjectSchemas extends Component {
 	render() {
 		const schemeFunctions = {
-			deleteForm: this.props.deleteScheme, addField: this.props.addEmptyField, deleteField: this.props.deleteField};
+			deleteForm: this.props.deleteScheme,
+			addField: this.props.addEmptyField,
+			deleteField: this.props.deleteField,
+			saveForm: this.props.saveScheme
+		};
 		const schemas = this.props.schemas;
+		const project = this.props.location.state;
 		return (
 			<div className="project-schemas page">
-				<Button onClick={this.props.addEmptyScheme}
-						className="add-scheme is-outlined"
-						iconHelpClass="is-small"
-						iconClassName="fa-plus">Add Scheme</Button>
+				<span className="project-control is-flex">
+					<span className="project-name"> {project.name}</span>
+					<Button onClick={this.props.addEmptyScheme}
+							className="add-scheme is-outlined"
+							iconHelpClass="is-small"
+							iconClassName="fa-plus">Add Scheme</Button>
+				</span>
 				<div className="schemas-container columns">
 					{
 						Object.keys(schemas).map((schemeId) =>
@@ -41,6 +49,7 @@ const mapDispatchToProps = dispatch => ({
 	addEmptyScheme: () => dispatch(addEmptyScheme()),
 	addEmptyField: (id) => dispatch(addEmptyField(id)),
 	deleteField: (schemeId, fieldId) => dispatch(deleteField(schemeId, fieldId)),
+	saveScheme: (schemeId, scheme) => dispatch(saveScheme(schemeId, scheme)),
 });
 
 
