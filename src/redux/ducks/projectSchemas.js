@@ -6,7 +6,7 @@ export const ADD_EMPTY_SCHEME = 'ADD_EMPTY_SCHEME';
 export const SAVE_SCHEME = 'SAVE_SCHEME';
 export const ADD_EMPTY_FIELD = 'ADD_EMPTY_FIELD';
 export const DELETE_FIELD = 'DELETE_FIELD';
-
+export const UPDATE_FIELD = 'UPDATE_FIELD';
 
 const DEFAULT_STATE = {
 	schemas: {},
@@ -42,10 +42,18 @@ export const deleteField = (schemeId, fieldId) => ({
 	fieldId
 });
 
-export const saveScheme = (id, scheme) =>({
+export const updateField = (schemeId, fieldId, field) => ({
+	type: DELETE_FIELD,
+	schemeId,
+	fieldId,
+	field
+});
+
+export const saveScheme = (id, name, fields) =>({
 	type: SAVE_SCHEME,
-	id,
-	scheme
+	schemeId: id,
+	name,
+	fields
 });
 
 const schemas = (state = DEFAULT_STATE.schemas, action) => {
@@ -56,7 +64,7 @@ const schemas = (state = DEFAULT_STATE.schemas, action) => {
 		case ADD_EMPTY_SCHEME:
 			return {...state, [uuidv4()]: EMPTY_SCHEME};
 		case SAVE_SCHEME:
-			return {...state, [action.id]: action.scheme};
+			return {...state, [action.schemeId]: {name: action.name} };
 		default:
 			return state;
 	}
@@ -71,6 +79,10 @@ const fields = (state = DEFAULT_STATE.fields, action) => {
 		case DELETE_FIELD:
 			let {[action.fieldId]: removedField, ...updatedFields} = state[action.schemeId];
 			return {...state, [action.schemeId]: updatedFields};
+		case UPDATE_FIELD:
+			return {...state, [action.schemeId]: {...state[action.schemeId], [action.fieldId]: action.field }};
+		case SAVE_SCHEME:
+			return {...state, [action.schemeId]: action.fields};
 		default:
 			return state;
 	}

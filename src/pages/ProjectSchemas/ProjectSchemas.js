@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteScheme, addEmptyScheme, addEmptyField, deleteField, saveScheme } from "../../redux/ducks/projectSchemas";
+import {
+	deleteScheme,
+	addEmptyScheme,
+	addEmptyField,
+	deleteField,
+	saveScheme,
+	updateField
+} from "../../redux/ducks/projectSchemas";
 import './ProjectSchemas.css';
 import SchemeForm from '../../components/SchemeForm/SchemeForm';
 import Button from '../../components/Button';
@@ -10,6 +17,7 @@ class ProjectSchemas extends Component {
 		const schemeFunctions = {
 			deleteForm: this.props.deleteScheme,
 			addField: this.props.addEmptyField,
+			updateField: this.props.updateField,
 			deleteField: this.props.deleteField,
 			saveForm: this.props.saveScheme
 		};
@@ -49,7 +57,8 @@ const mapDispatchToProps = dispatch => ({
 	addEmptyScheme: () => dispatch(addEmptyScheme()),
 	addEmptyField: (id) => dispatch(addEmptyField(id)),
 	deleteField: (schemeId, fieldId) => dispatch(deleteField(schemeId, fieldId)),
-	saveScheme: (schemeId, scheme) => dispatch(saveScheme(schemeId, scheme)),
+	updateField: (schemeId, fieldId, field) => dispatch(updateField(schemeId, fieldId, field)),
+	saveScheme: (schemeId, name, fields) => dispatch(saveScheme(schemeId, name, fields)),
 });
 
 

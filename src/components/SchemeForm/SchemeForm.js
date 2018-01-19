@@ -13,14 +13,8 @@ class SchemeForm extends React.Component {
 		}
 	}
 
-	onFieldsChange(id, field) {
-		this.setState((prevState) => ({
-			fields: {...prevState.fields, [id]: field}
-		}));
-	}
-
 	render() {
-		const {name, id, fields, deleteForm, addField, deleteField, saveForm} = this.props;
+		const {name, id, fields, deleteForm, addField, deleteField, saveForm, updateField} = this.props;
 		return (
 			<div className="scheme-form card">
 				<div className="card-header">
@@ -29,7 +23,7 @@ class SchemeForm extends React.Component {
 					<i className="fa fa-trash" aria-hidden="true"/>
 				</span>
 					</a>
-					<Button onClick={() => saveForm(id, this.state)}
+					<Button onClick={() => saveForm(id, this.state.name, this.state.fields)}
 							className="is-outlined">
 						Save
 					</Button>
@@ -41,7 +35,7 @@ class SchemeForm extends React.Component {
 							<SchemeField key={fieldId}
 										 id={fieldId}
 										 deleteField={(fieldId) => deleteField(id, fieldId)}
-										 onChange={(value) => this.onFieldsChange(id, value)}
+										 onChange={(value) => updateField(id, fieldId, value)}
 										 {...fields[fieldId]}/>
 						)
 					}
