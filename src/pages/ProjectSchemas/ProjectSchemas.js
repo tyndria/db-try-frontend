@@ -52,13 +52,13 @@ const mapStateToProps = state => ({
 	fields: state.projectSchemas.fields
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, {location}) => ({
 	deleteScheme: (id) => dispatch(deleteScheme(id)),
 	addEmptyScheme: () => dispatch(addEmptyScheme()),
 	addEmptyField: (id) => dispatch(addEmptyField(id)),
 	deleteField: (schemeId, fieldId) => dispatch(deleteField(schemeId, fieldId)),
 	updateField: (schemeId, fieldId, field) => dispatch(updateField(schemeId, fieldId, field)),
-	saveScheme: (schemeId, name, fields) => dispatch(saveScheme(schemeId, name, fields)),
+	saveScheme: (schemeId, name) => dispatch(saveScheme(location.state.id, schemeId, name)),
 });
 
 

@@ -1,6 +1,8 @@
 import uuidv4 from 'uuid/v4';
 import { combineReducers } from 'redux';
 
+import request from '../../utils/request';
+
 export const DELETE_SCHEME = 'DELETE_SCHEME';
 export const ADD_EMPTY_SCHEME = 'ADD_EMPTY_SCHEME';
 export const SAVE_SCHEME = 'SAVE_SCHEME';
@@ -43,18 +45,26 @@ export const deleteField = (schemeId, fieldId) => ({
 });
 
 export const updateField = (schemeId, fieldId, field) => ({
-	type: DELETE_FIELD,
+	type: UPDATE_FIELD,
 	schemeId,
 	fieldId,
 	field
 });
 
-export const saveScheme = (id, name, fields) =>({
-	type: SAVE_SCHEME,
-	schemeId: id,
-	name,
-	fields
-});
+export const saveScheme = (projectId, schemeId, name) => {
+	return (dispatch, getState) => {
+		const state = getState();
+		const fields = state.projectSchemas.fields[schemeId] || [];
+		return request.fetch('/api/schemas', 'PUT', {name, schemeId, projectId, fields}).then((data) => {
+			dispatch({
+				type: SAVE_SCHEME,
+				schemeId,
+				projectId,
+				name
+			});
+		});
+	};
+};
 
 const schemas = (state = DEFAULT_STATE.schemas, action) => {
 	switch(action.type) {
@@ -81,8 +91,6 @@ const fields = (state = DEFAULT_STATE.fields, action) => {
 			return {...state, [action.schemeId]: updatedFields};
 		case UPDATE_FIELD:
 			return {...state, [action.schemeId]: {...state[action.schemeId], [action.fieldId]: action.field }};
-		case SAVE_SCHEME:
-			return {...state, [action.schemeId]: action.fields};
 		default:
 			return state;
 	}

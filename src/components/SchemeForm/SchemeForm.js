@@ -8,8 +8,7 @@ class SchemeForm extends React.Component {
 		super(props);
 
 		this.state = {
-			name: props.name || '',
-			fields: props.fields || {}
+			name: props.name || ''
 		}
 	}
 
@@ -23,7 +22,7 @@ class SchemeForm extends React.Component {
 					<i className="fa fa-trash" aria-hidden="true"/>
 				</span>
 					</a>
-					<Button onClick={() => saveForm(id, this.state.name, this.state.fields)}
+					<Button onClick={() => saveForm(id, this.state.name)}
 							className="is-outlined">
 						Save
 					</Button>
