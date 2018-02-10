@@ -6,13 +6,18 @@ import {
 	addEmptyField,
 	deleteField,
 	saveScheme,
-	updateField
+	updateField,
+	loadData
 } from "../../redux/ducks/projectSchemas";
 import './ProjectSchemas.css';
 import SchemeForm from '../../components/SchemeForm/SchemeForm';
 import Button from '../../components/Button';
 
 class ProjectSchemas extends Component {
+	componentDidMount() {
+		this.props.loadSchemas();
+	}
+
 	render() {
 		const schemeFunctions = {
 			deleteForm: this.props.deleteScheme,
@@ -59,6 +64,7 @@ const mapDispatchToProps = (dispatch, {location}) => ({
 	deleteField: (schemeId, fieldId) => dispatch(deleteField(schemeId, fieldId)),
 	updateField: (schemeId, fieldId, field) => dispatch(updateField(schemeId, fieldId, field)),
 	saveScheme: (schemeId, name) => dispatch(saveScheme(location.state.id, schemeId, name)),
+	loadSchemas: () => dispatch(loadData(location.state.id))
 });
 
 
