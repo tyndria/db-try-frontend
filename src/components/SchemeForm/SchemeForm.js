@@ -10,7 +10,7 @@ class SchemeForm extends React.Component {
 
     this.state = {
       name: props.name || ''
-    }
+    };
   }
 
   render() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addProject, fetchAll} from "../../redux/ducks/projectList";
+import {addProject, fetchAll, runProject} from "../../redux/ducks/projectList";
 import './Project.css';
 import List from '../../components/List/List';
 import Form from '../../components/Form';
@@ -12,8 +12,15 @@ class Projects extends React.Component {
 		this.props.fetchAll();
 	}
 
+	/*runProject() {
+    this.props.history.push({
+      pathname: '/projectStatistics',
+      state: {}
+    })
+	}*/
+
 	render() {
-		const {addProject, projects} = this.props;
+		const {addProject, projects, runProject} = this.props;
 		return (
 			<div className="card project page">
 				<div className="option-text">Or</div>
@@ -31,12 +38,7 @@ class Projects extends React.Component {
 									<ProjectListItem name={item.name}
 													 key={item.id}
 													 id={item.id}
-													 getStatistics={e => {
-														 this.props.history.push({
-															 pathname: '/projectStatistics',
-															 state: {}
-														 })
-													 }}/>
+													 getStatistics={e => runProject(item.id)}/>
 								)
 							}
 						</List>
@@ -53,7 +55,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	addProject: (name) => dispatch(addProject(name)),
-	fetchAll: () => dispatch(fetchAll())
+	fetchAll: () => dispatch(fetchAll()),
+	runProject: (projectId) => dispatch(runProject(projectId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Projects);

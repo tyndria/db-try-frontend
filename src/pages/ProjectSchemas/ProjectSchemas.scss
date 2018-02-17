@@ -2,6 +2,10 @@
 	display: flex;
 	flex-direction: column;
 
+	.project-control {
+		flex-shrink: 0;
+	}
+
 	.add-scheme {
 		margin-left: 1rem;
 		/* bad solution */
@@ -18,7 +22,7 @@
 		flex-wrap: wrap;
 		justify-content: start;
 		overflow-y: scroll;
-		padding: 1rem;
+		margin: 1rem;
 
 		.scheme-form {
 			margin: 0.5rem;
