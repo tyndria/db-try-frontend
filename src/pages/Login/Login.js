@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import Input from '../../components/Input';
+import {registerUser} from '../../redux/ducks/users';
 import './Login.css';
 
 class Login extends Component {
@@ -39,5 +41,12 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = state => ({
 
-export default Login;
+});
+
+const mapDispatchToProps = dispatch => ({
+  registerUser: (email, password) => dispatch(registerUser(email, password))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
