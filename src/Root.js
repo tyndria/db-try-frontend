@@ -7,6 +7,7 @@ import App from './App';
 import Projects from './pages/Projects/Projects';
 import ProjectSchemas from './pages/ProjectSchemas/ProjectSchemas.js';
 import ProjectStatistics from './pages/ProjectStatistics/ProjectStatistics';
+import Login from './pages/Login/Login';
 
 const store = configureStore();
 
@@ -18,6 +19,7 @@ const Root = () => (
 				<Route path="/projects" component={Projects}/>
 				<Route path="/projectSchemas" component={ProjectSchemas}/>
 				<Route path="/projectStatistics" component={ProjectStatistics}/>
+				<Route path="/login" component={Login}/>
 			</App>
 		</Router>
 	</Provider>

@@ -1,5 +1,4 @@
 import uuidv4 from 'uuid/v4';
-import { createSelector } from 'reselect'
 import { combineReducers } from 'redux';
 
 import request from '../../utils/request';
