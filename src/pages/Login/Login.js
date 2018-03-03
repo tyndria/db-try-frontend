@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import {registerUser} from '../../redux/ducks/users';
+import {registerUser, loginUser} from '../../redux/ducks/users';
 import './Login.css';
 
 class Login extends Component {
@@ -12,7 +12,9 @@ class Login extends Component {
 		this.state = {
 			email: '',
 			password: '',
-			isLoginForm: true
+			confirmedPassword: '',
+			isLoginForm: true,
+			showRegisterError: false
 		};
 	}
 
@@ -21,17 +23,30 @@ class Login extends Component {
 	}
 
 	onPasswordChange(e) {
-		this.setState({password: e.target.value});
+		this.setState({password: e.target.value, showRegisterError: false});
 	}
 
 	onConfirmPasswordChange(e) {
-
+		this.setState({confirmedPassword: e.target.value, showRegisterError: false});
 	}
 
 	toggleFormType() {
 		this.setState((state) => ({
 			isLoginForm: !state.isLoginForm
 		}));
+	}
+
+	submitForm() {
+		const {email, password, confirmedPassword} = this.state;
+		if (!this.state.isLoginForm) {
+			if (password === confirmedPassword) {
+				this.props.registerUser(email, password);
+			} else {
+				this.setState({showRegisterError: true});
+			}
+		} else {
+			this.props.loginUser(email, password);
+		}
 	}
 
 	render() {
@@ -44,19 +59,25 @@ class Login extends Component {
 						<div className="box">
 							<div className="field">
 								<label className="checkbox">
-									<input type="checkbox" onChange={() => this.toggleFormType()} />
+									<input type="checkbox" onChange={() => this.toggleFormType()}/>
 									It's a first time
 								</label>
 							</div>
 
 							<form>
-								<Input type="email" placeholder="Your Email" onChange={(e) => this.onEmailChange(e)} autofocus="" />
-								<Input type="password" placeholder="Your Password" onChange={(e) => this.onPasswordChange(e)} />
-								{ !this.state.isLoginForm &&
-								<Input type="password" placeholder="Confirm Your Password" onChange={(e) => this.onConfirmPasswordChange(e)} />
+								<Input type="email" placeholder="Your Email" onChange={(e) => this.onEmailChange(e)}
+									   autofocus=""/>
+								<Input type="password" placeholder="Your Password"
+									   onChange={(e) => this.onPasswordChange(e)}/>
+								{!this.state.isLoginForm &&
+									<Input type="password" placeholder="Confirm Your Password"
+									   onChange={(e) => this.onConfirmPasswordChange(e)}/>
+								}
+								{!this.state.isLoginForm && this.state.showRegisterError &&
+									<div className="register-error"> The passwords are different! </div>
 								}
 
-								<Button onClick={() => registerUser(this.state.email, this.state.password)}
+								<Button onClick={() => this.submitForm()}
 										className="login-btn is-block is-info is-large is-fullwidth">
 									Ok
 								</Button>
@@ -72,7 +93,8 @@ class Login extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-	registerUser: (email, password) => dispatch(registerUser(email, password))
+	registerUser: (email, password) => dispatch(registerUser(email, password)),
+	loginUser: (email, password) => dispatch(loginUser(email, password))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
