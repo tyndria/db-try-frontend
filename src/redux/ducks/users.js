@@ -21,7 +21,7 @@ const DEFAULT_STATE = {
 
 export const registerUser = (email, password) => {
   return (dispatch) => {
-    return request.fetch('/api/register', 'POST', {email, password}).then((data) => {
+    return request.fetch('/api/auth/register', 'POST', {email, password}).then((data) => {
       dispatch({
         type: REGISTER_USER,
         payload: data
