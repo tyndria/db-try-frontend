@@ -11,7 +11,8 @@ class Login extends Component {
 
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			isLoginForm: true
 		};
 	}
 
@@ -23,35 +24,44 @@ class Login extends Component {
 		this.setState({password: e.target.value});
 	}
 
+	onConfirmPasswordChange(e) {
+
+	}
+
+	toggleFormType() {
+		this.setState((state) => ({
+			isLoginForm: !state.isLoginForm
+		}));
+	}
+
 	render() {
 		const {registerUser} = this.props;
 		return (
 			<div className="login is-success">
 				<div className="container has-text-centered">
 					<div className="column is-4 is-offset-4">
-						<h3 className="title has-text-grey">Login</h3>
-						<p className="subtitle has-text-grey">Please login to proceed.</p>
+						<h3 className="title has-text-grey">{this.state.isLoginForm ? 'Login' : 'Register'}</h3>
 						<div className="box">
+							<div className="field">
+								<label className="checkbox">
+									<input type="checkbox" onChange={() => this.toggleFormType()} />
+									It's a first time
+								</label>
+							</div>
+
 							<form>
 								<Input type="email" placeholder="Your Email" onChange={(e) => this.onEmailChange(e)} autofocus="" />
 								<Input type="password" placeholder="Your Password" onChange={(e) => this.onPasswordChange(e)} />
-
-								<div className="field">
-									<label className="checkbox">
-										<input type="checkbox" />
-										Remember me
-									</label>
-								</div>
+								{ !this.state.isLoginForm &&
+								<Input type="password" placeholder="Confirm Your Password" onChange={(e) => this.onConfirmPasswordChange(e)} />
+								}
 
 								<Button onClick={() => registerUser(this.state.email, this.state.password)}
 										className="login-btn is-block is-info is-large is-fullwidth">
-									Login
+									Ok
 								</Button>
 							</form>
 						</div>
-						<p className="has-text-grey">
-							<a href="../">Sign Up</a>
-						</p>
 					</div>
 				</div>
 			</div>
