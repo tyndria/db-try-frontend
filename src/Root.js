@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import PrivateRoute from './components/PrivateRoute';
 import configureStore from './redux/configureStore';
 import ProgressBar from './components/ProgressBar/ProgressBar.js';
 import App from './App';
@@ -15,10 +16,10 @@ const Root = () => (
 	<Provider store={store}>
 		<Router>
 			<App>
-				<Route exact path="/" component={ProgressBar}/>
-				<Route path="/projects" component={Projects}/>
-				<Route path="/projectSchemas" component={ProjectSchemas}/>
-				<Route path="/projectStatistics" component={ProjectStatistics}/>
+				<PrivateRoute exact path="/" component={ProgressBar}/>
+				<PrivateRoute path="/projects" component={Projects}/>
+				<PrivateRoute path="/projectSchemas" component={ProjectSchemas}/>
+				<PrivateRoute path="/projectStatistics" component={ProjectStatistics}/>
 				<Route path="/login" component={Login}/>
 			</App>
 		</Router>

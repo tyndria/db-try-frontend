@@ -21,7 +21,7 @@ const NavBar = ({user, logOut}) => (
 			</div>
 			<div className="navbar-end">
 				<div className="auth">
-					{user && <span className="user">{user.email}</span> }
+					{user && <span className="user">{user.email} ({user.role})</span> }
 					<div className="auth-control">
 						{user ?
 							<Button className="login-btn is-link is-outlined"
