@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { registerUser, loginUser } from '../../redux/ducks/users';
+import { Redirect, withRouter } from 'react-router-dom';
 import './Login.css';
 
 /* TODO: move form/sign form to separated component */
@@ -84,7 +85,9 @@ class Login extends Component {
 								}
 
 								{user &&
-									<div className="request-success">Success!</div>
+									<Redirect to={{
+										pathname: '/'
+									}}/>
 								}
 
 								<Button onClick={() => this.submitForm()}
@@ -110,4 +113,4 @@ const mapDispatchToProps = dispatch => ({
 	loginUser: (email, password) => dispatch(loginUser(email, password))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
