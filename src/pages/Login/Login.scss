@@ -1,7 +1,13 @@
 .login {
 
-	.register-error {
+	.register-error,
+	.request-error {
 		color: #E91E63;
+		margin: 5px;
+	}
+
+	.request-success {
+		color: forestgreen;
 		margin: 5px;
 	}
 }

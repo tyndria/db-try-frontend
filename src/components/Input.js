@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 const Input = ({
 				   label,
+				   type,
 				   value,
 				   hintText,
 				   successClass,
@@ -15,7 +16,7 @@ const Input = ({
 		{ label && <label className="label">{label}</label> }
 		<div className={classNames('control', {'has-icons-left': leftIconClass, 'has-icons-right': rightIconClass})}>
 			<input className={classNames('input', successClass)}
-				   type="text"
+				   type={type || 'text'}
 				   defaultValue={value}
 				   placeholder={placeholder}
 				   onChange={onChange}

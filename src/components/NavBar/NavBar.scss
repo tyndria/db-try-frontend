@@ -21,10 +21,21 @@
 			min-width: 15rem;
 		}
 	}
+
+	.auth {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+
+		.user {
+			color: $primary;
+			font-weight: 600;
+			text-transform: uppercase;
+		}
+	}
 }
 
 .login-btn {
 	margin: auto;
 	margin-right: 10px;
-	font-size: 1.5rem !important; // :( TODO: remove !important
 }

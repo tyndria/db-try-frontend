@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-import { registerUser, loginUser } from '../../redux/ducks/users';
+import Input from '../components/Input';
+import Button from '../components/Button';
 import './Login.css';
 
-/* TODO: move form/sign form to separated component */
 class Login extends Component {
 	constructor() {
 		super();
@@ -15,8 +13,7 @@ class Login extends Component {
 			password: '',
 			confirmedPassword: '',
 			isLoginForm: true,
-			showRegisterError: false,
-			user: null
+			showRegisterError: false
 		};
 	}
 
@@ -38,6 +35,10 @@ class Login extends Component {
 		}));
 	}
 
+	componentDidMount() {
+		const { user } = this.props;
+	}
+
 	submitForm() {
 		const {email, password, confirmedPassword} = this.state;
 		if (!this.state.isLoginForm) {
@@ -52,11 +53,12 @@ class Login extends Component {
 	}
 
 	render() {
-		const {user, error} = this.props;
+		const user = this.props.user;
 		return (
 			<div className="login is-success">
 				<div className="container has-text-centered">
 					<div className="column is-4 is-offset-4">
+						{ user && user.email }
 						<h3 className="title has-text-grey">{this.state.isLoginForm ? 'Login' : 'Register'}</h3>
 						<div className="box">
 							<div className="field">
@@ -72,19 +74,11 @@ class Login extends Component {
 								<Input type="password" placeholder="Your Password"
 									   onChange={(e) => this.onPasswordChange(e)}/>
 								{!this.state.isLoginForm &&
-									<Input type="password" placeholder="Confirm Your Password"
+								<Input type="password" placeholder="Confirm Your Password"
 									   onChange={(e) => this.onConfirmPasswordChange(e)}/>
 								}
 								{!this.state.isLoginForm && this.state.showRegisterError &&
-									<div className="register-error"> The passwords are different! </div>
-								}
-
-								{error &&
-									<div className="request-error">{error}</div>
-								}
-
-								{user &&
-									<div className="request-success">Success!</div>
+								<div className="register-error"> The passwords are different! </div>
 								}
 
 								<Button onClick={() => this.submitForm()}
@@ -101,8 +95,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-	user: state.users.user,
-	error: state.users.error
+	user: getUser(state)
 });
 
 const mapDispatchToProps = dispatch => ({
