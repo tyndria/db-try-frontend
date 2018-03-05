@@ -15,10 +15,13 @@ const NavBar = ({user, logOut}) => (
 		</div>
 		{/*TODO: probably, create config with links and pass here in props*/}
 		<div className="navbar-menu">
-			<div className="navbar-end links">
+			<div className="navbar-start links">
 				<div className="navbar-item link"><Link to="/">Statistics</Link></div>
 				<div className="navbar-item link"><Link to="/projects" replace>Projects</Link></div>
+			</div>
+			<div className="navbar-end">
 				<div className="auth">
+					{user && <span className="user">{user.email}</span> }
 					<div className="auth-control">
 						{user ?
 							<Button className="login-btn is-link is-outlined"
@@ -27,7 +30,6 @@ const NavBar = ({user, logOut}) => (
 							<Button className="login-btn is-link is-outlined"><Link to="/login" replace>Login</Link></Button>
 						}
 					</div>
-					<div className="user">{user && user.email}</div>
 				</div>
 			</div>
 		</div>

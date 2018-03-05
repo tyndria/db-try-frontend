@@ -1,11 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import classNames from 'classnames';
 import Button from '../Button';
+import {Roles} from '../../constants/roles';
 import './ProjectListItem.css';
 
-const ProjectListItem = ({name, id, getStatistics}) => (
+const ProjectListItem = ({name, id, getStatistics, user}) => (
 	<span className="project-list-item panel-block is-active">
-		<Link to={{pathname: "/projectSchemas", state: {name, id}}}>
+		<Link to={{pathname: "/projectSchemas", state: {name, id}}}
+			  className={classNames({'disabled': !(user && user.role === Roles.Developer)})}>
 			<span className="panel-icon">
 				<i className="fa fa-book"/>
 			</span>{name}

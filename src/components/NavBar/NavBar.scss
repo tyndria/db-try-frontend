@@ -18,19 +18,24 @@
 		font-size: 1.5rem;
 
 		a {
-			min-width: 15rem;
+			margin: 0 4rem;
 		}
 	}
 
 	.auth {
 		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
+		margin: auto;
+		margin-right: 2rem;
 
 		.user {
-			color: $primary;
+			color: #03a9f4;
 			font-weight: 600;
+			display: inline-block;
+			margin: auto;
+			margin-right: 15px;
 			text-transform: uppercase;
+			border-right: 1px solid;
+			padding: 5px;
 		}
 	}
 }
