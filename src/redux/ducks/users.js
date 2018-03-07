@@ -16,15 +16,15 @@ const DEFAULT_STATE = {
 	error: null
 };
 
-export const registerUserSuccess = (data) => ({
-	type: REGISTER_USER_SUCCESS,
-	payload: data
-});
+export const registerUserSuccess = (data) => ({type: REGISTER_USER_SUCCESS, payload: data});
 
-export const registerUserFailure = (data) => ({
-	type: REGISTER_USER_FAILURE,
-	payload: data
-});
+export const registerUserFailure = (data) => ({type: REGISTER_USER_FAILURE, payload: data});
+
+export const loginSuccess = (data) => ({type: LOGIN_SUCCESS, payload: data});
+
+export const loginFailure = (err) => ({type: LOGIN_FAILURE, payload: err});
+
+export const logoutSuccess = (data) => ({type: LOGOUT_SUCCESS, payload: data});
 
 export const registerUser = (email, password) => {
 	return (dispatch) => {
@@ -37,10 +37,7 @@ export const registerUser = (email, password) => {
 export const logOut = () => {
 	return (dispatch) => {
 		return request.fetch('/api/auth/logout', 'GET').then((data) => {
-			dispatch({
-				type: LOGOUT_SUCCESS,
-				payload: data
-			});
+			dispatch(logoutSuccess(data));
 		});
 	};
 };
@@ -48,14 +45,8 @@ export const logOut = () => {
 export const loginUser = (email, password) => {
 	return (dispatch) => {
 		return request.fetch('/api/auth/login', 'POST', {email, password}).then((data) => {
-			dispatch({
-				type: LOGIN_SUCCESS,
-				payload: data
-			});
-		}, (err) => dispatch({
-			type: LOGIN_FAILURE,
-			payload: err
-		}));
+			dispatch(loginSuccess(data));
+		}, (err) => dispatch(loginFailure(err)));
 	};
 };
 

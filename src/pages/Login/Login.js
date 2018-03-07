@@ -85,14 +85,11 @@ class Login extends Component {
 								}
 
 								{user &&
-									<Redirect to={{
-										pathname: '/'
-									}}/>
+									<Redirect to={{pathname: '/'}}/>
 								}
 
 								<Button onClick={() => this.submitForm()}
-										className="login-btn is-block is-info is-large is-fullwidth">
-									Ok
+										className="login-btn is-block is-info is-large is-fullwidth">Ok
 								</Button>
 							</form>
 						</div>
