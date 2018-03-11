@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import Input from '../Input';
 import SchemeField from '../SchemeField/SchemeField.js';
 import Button from '../Button';
@@ -14,12 +15,12 @@ class SchemeForm extends React.Component {
   }
 
   render() {
-    const {name, id, fields, deleteForm, addField, deleteField, saveForm, updateField} = this.props;
+    const {name, id, fields, deleteForm, addField, deleteField, saveForm, updateField, isSaved, isLoading} = this.props;
     return (
       <div className="scheme-form card">
         <div className="card-header">
           <Button onClick={() => saveForm(id, this.state.name)}
-                  className="save-btn is-outlined">
+                  className={classNames('save-btn is-outlined', {'is-success': isSaved, 'is-loading': isLoading})}>
             Save
           </Button>
           <a onClick={() => deleteForm(id)} className="delete-icon card-header-icon" aria-label="more options">

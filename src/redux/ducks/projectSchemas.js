@@ -6,6 +6,7 @@ import request from '../../utils/request';
 export const DELETE_SCHEME = 'DELETE_SCHEME';
 export const ADD_EMPTY_SCHEME = 'ADD_EMPTY_SCHEME';
 export const SAVE_SCHEME = 'SAVE_SCHEME';
+export const SAVE_SCHEME_REQUEST = 'SAVE_SCHEME_REQUEST';
 export const LOAD_DATA = 'LOAD_DATA';
 
 export const ADD_EMPTY_FIELD = 'ADD_EMPTY_FIELD';
@@ -23,12 +24,20 @@ const EMPTY_FIELD = {
 };
 
 const EMPTY_SCHEME = {
-	name: ''
+	name: '',
+	isSaved: false,
+	isLoading: false
 };
 
 export const deleteScheme = (id) => ({
 	type: DELETE_SCHEME,
 	id: id
+});
+
+export const saveSchemeRequest = (schemeId, name) => ({
+	type: SAVE_SCHEME_REQUEST,
+  schemeId,
+	name
 });
 
 export const addEmptyScheme = () => ({
@@ -61,7 +70,9 @@ export const loadData = (projectId) => {
 			const newFieldsState = {};
 			schemas.forEach((scheme) => {
 				newSchemasState[scheme._id] = {
-					name: scheme.name
+					name: scheme.name,
+					isLoading: false,
+					isSaved: false
 				};
 				newFieldsState[scheme._id] = {};
 				scheme.fields.forEach(({_id, name, type}) => {
@@ -79,6 +90,7 @@ export const loadData = (projectId) => {
 
 export const saveScheme = (projectId, schemeId, name) => {
 	return (dispatch, getState) => {
+		dispatch(saveSchemeRequest(schemeId));
 		const state = getState();
 		const fields = state.projectSchemas.fields[schemeId] || [];
 		return request.fetch('/api/schemas/save', 'PUT', {name, schemeId, projectId, fields}).then((data) => {
@@ -100,7 +112,9 @@ const schemas = (state = DEFAULT_STATE.schemas, action) => {
 		case ADD_EMPTY_SCHEME:
 			return {...state, [uuidv4()]: EMPTY_SCHEME};
 		case SAVE_SCHEME:
-			return {...state, [action.schemeId]: {name: action.name}};
+			return {...state, [action.schemeId]: {name: action.name, isSaved: true, isLoading: false}};
+		case SAVE_SCHEME_REQUEST:
+			return {...state, [action.schemeId]: {...state[action.schemeId], isSaved: false, isLoading: true}};
 		case LOAD_DATA:
 			return action.payload.schemas;
 		default:
