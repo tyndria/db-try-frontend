@@ -45,7 +45,7 @@ export default (state = DEFAULT_STATE, action) => {
         projects: [...state.projects, ...[action.payload]]
       };
     case RUN_PROJECT:
-      console.log('WAS RUN');
+      console.log('WAS RUN', action.payload);
       return state;
     default:
       return state;

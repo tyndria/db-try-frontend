@@ -44,7 +44,7 @@ class Projects extends React.Component {
 													 key={item.id}
 													 id={item.id}
 													 user={user}
-													 getStatistics={e => this.runProject(item.id)}/>
+													 getStatistics={e => runProject(item.id)}/>
 								)
 							}
 						</List>
@@ -63,7 +63,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 	addProject: (name) => dispatch(addProject(name)),
 	fetchAll: () => dispatch(fetchAll()),
-	// runProject: (projectId) => dispatch(runProject(projectId)) // TODO: prepare backend for running project
+	runProject: (projectId) => dispatch(runProject(projectId)) // TODO: prepare backend for running project
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Projects);
