@@ -29,11 +29,6 @@ const EMPTY_SCHEME = {
 	isLoading: false
 };
 
-export const deleteScheme = (id) => ({
-	type: DELETE_SCHEME,
-	id: id
-});
-
 export const saveSchemeRequest = (schemeId, name) => ({
 	type: SAVE_SCHEME_REQUEST,
   schemeId,
@@ -104,6 +99,17 @@ export const saveScheme = (projectId, schemeId, name) => {
 	};
 };
 
+export const deleteScheme = (id) => {
+  return (dispatch) => {
+    return request.fetch(`/api/schemas/${id}`, 'DELETE').then(() => {
+      dispatch({
+        type: DELETE_SCHEME,
+        id
+      });
+    });
+  };
+};
+
 const schemas = (state = DEFAULT_STATE.schemas, action) => {
 	switch (action.type) {
 		case DELETE_SCHEME:
@@ -131,6 +137,9 @@ const fields = (state = DEFAULT_STATE.fields, action) => {
 		case DELETE_FIELD:
 			let {[action.fieldId]: removedField, ...updatedFields} = state[action.schemeId];
 			return {...state, [action.schemeId]: updatedFields};
+		case DELETE_SCHEME:
+			const {[action.id]: removedScheme, ...updatedState} = state;
+			return updatedState;
 		case UPDATE_FIELD:
 			return {...state, [action.schemeId]: {...state[action.schemeId], [action.fieldId]: action.field}};
 		case LOAD_DATA:
