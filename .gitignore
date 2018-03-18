@@ -23,3 +23,5 @@ yarn-error.log*
 /src/components/**/*.css
 /src/*.css
 /src/pages/**/*.css
+
+.idea/

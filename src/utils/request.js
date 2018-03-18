@@ -8,6 +8,8 @@ export const DEFAULT_OPTIONS = {
 	}
 };
 
+export const BACKEND_URL = 'https://dbtry-mongo-db.herokuapp.com';
+
 class Request {
 	fetch = (url, method = 'GET', rawBody = null) =>
 		new Promise((resolve, reject) => {
@@ -21,7 +23,7 @@ class Request {
 				options.body = JSON.stringify(rawBody);
 			}
 
-			fetch(`http://localhost:8080${url}`, options)
+			fetch(`${BACKEND_URL}${url}`, options)
 				.then(response => {
 					const contentType = response.headers.get('content-type');
 
