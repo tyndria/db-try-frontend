@@ -4,7 +4,6 @@ export const FETCH_ALL = 'FETCH_ALL';
 export const REQUEST_PROJECTS = 'REQUEST_PROJECTS';
 export const RECEIVE_PROJECTS = 'RECEIVE_PROJECTS';
 export const ADD_PROJECT = 'ADD_PROJECT';
-export const RUN_PROJECT = 'RUN_PROJECT';
 
 const DEFAULT_STATE = {
   projects: []
@@ -26,14 +25,6 @@ export const addProject = (name) => {
   };
 };
 
-export const runProject = (projectId) => {
-  return (dispatch) => {
-    return request.fetch(`/api/projects/run/${projectId}`, 'GET').then((data) => {
-      dispatch({type: RUN_PROJECT, payload: data});
-    });
-  };
-};
-
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case RECEIVE_PROJECTS:
@@ -44,9 +35,6 @@ export default (state = DEFAULT_STATE, action) => {
       return {
         projects: [...state.projects, ...[action.payload]]
       };
-    case RUN_PROJECT:
-      console.log('WAS RUN', action.payload);
-      return state;
     default:
       return state;
   }

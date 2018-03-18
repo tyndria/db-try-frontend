@@ -10,8 +10,8 @@ const ProjectStatistics = ({chartData}) => (
 			<CartesianGrid strokeDasharray="3 3"/>
 			<Tooltip/>
 			<Legend />
-			<Bar dataKey="MongoDB" fill="#8884d8" />
-			<Bar dataKey="MySQL" fill="#82ca9d" />
+			<Bar dataKey="mongodb" fill="#8884d8" />
+			<Bar dataKey="mysql" fill="#82ca9d" />
 		</BarChart>
 	</ResponsiveContainer>
 );

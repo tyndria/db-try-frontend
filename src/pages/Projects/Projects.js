@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addProject, fetchAll, runProject} from "../../redux/ducks/projectList";
+import {addProject, fetchAll} from "../../redux/ducks/projectList";
+import {runProject} from '../../redux/ducks/projectStatistics';
 import {Roles} from '../../constants/roles';
 import './Project.css';
 import List from '../../components/List/List';
@@ -13,7 +14,9 @@ class Projects extends React.Component {
 		this.props.fetchAll();
 	}
 
-	runProject() {
+	runProject(id) {
+		this.props.runProject(id);
+
 		this.props.history.push({
 			pathname: '/projectStatistics',
 			state: {}
@@ -21,7 +24,7 @@ class Projects extends React.Component {
 	}
 
 	render() {
-		const {addProject, projects, user, runProject} = this.props;
+		const {addProject, projects, user} = this.props;
 		return (
 			<div className="card project page">
 				{ user && user.role === Roles.Developer &&
@@ -44,7 +47,7 @@ class Projects extends React.Component {
 													 key={item.id}
 													 id={item.id}
 													 user={user}
-													 getStatistics={e => runProject(item.id)}/>
+													 getStatistics={e => this.runProject(item.id)}/>
 								)
 							}
 						</List>
@@ -63,7 +66,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 	addProject: (name) => dispatch(addProject(name)),
 	fetchAll: () => dispatch(fetchAll()),
-	runProject: (projectId) => dispatch(runProject(projectId)) // TODO: prepare backend for running project
+	runProject: (projectId) => dispatch(runProject(projectId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Projects);
