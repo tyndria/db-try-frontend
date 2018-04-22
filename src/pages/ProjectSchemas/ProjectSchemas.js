@@ -18,13 +18,21 @@ class ProjectSchemas extends Component {
 		this.props.loadSchemas();
 	}
 
+  configure() {
+    this.props.history.push({
+      pathname: '/projectConfiguration',
+      state: {}
+    })
+  }
+
 	render() {
 		const schemeFunctions = {
 			deleteForm: this.props.deleteScheme,
 			addField: this.props.addEmptyField,
 			updateField: this.props.updateField,
 			deleteField: this.props.deleteField,
-			saveForm: this.props.saveScheme
+			saveForm: this.props.saveScheme,
+			configure: () => this.configure(),
 		};
 		const schemas = this.props.schemas;
 		const project = this.props.location.state;

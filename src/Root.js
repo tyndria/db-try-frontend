@@ -9,6 +9,7 @@ import Projects from './pages/Projects/Projects';
 import ProjectSchemas from './pages/ProjectSchemas/ProjectSchemas.js';
 import ProjectStatistics from './pages/ProjectStatistics/ProjectStatistics';
 import Login from './pages/Login/Login';
+import ProjectConfiguration from './pages/ProjectConfiguration/ProjectConfiguration';
 
 const store = configureStore();
 
@@ -20,6 +21,7 @@ const Root = () => (
 				<PrivateRoute path="/projects" component={Projects}/>
 				<PrivateRoute path="/projectSchemas" component={ProjectSchemas}/>
 				<PrivateRoute path="/projectStatistics" component={ProjectStatistics}/>
+				<PrivateRoute path="/projectConfiguration" component={ProjectConfiguration} />
 				<Route path="/login" component={Login}/>
 			</App>
 		</Router>

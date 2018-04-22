@@ -10,9 +10,10 @@ const Input = ({
                  leftIconClass,
                  rightIconClass,
                  placeholder,
-                 onChange
+                 onChange,
+                 className,
                }) => (
-  <div className="field">
+  <div className={classNames('field', className)}>
     { label && <label className="label">{label}</label> }
     <div className={classNames('control', {'has-icons-left': leftIconClass, 'has-icons-right': rightIconClass})}>
       <input className={classNames('input', successClass)}

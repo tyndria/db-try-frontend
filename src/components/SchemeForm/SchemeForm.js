@@ -15,13 +15,30 @@ class SchemeForm extends React.Component {
   }
 
   render() {
-    const {name, id, fields, deleteForm, addField, deleteField, saveForm, updateField, isSaved, isLoading} = this.props;
+    const {
+      name,
+      id,
+      fields,
+      deleteForm,
+      addField,
+      deleteField,
+      saveForm,
+      updateField,
+      isSaved,
+      isLoading,
+      configure
+    } = this.props;
+
     return (
       <div className="scheme-form card">
         <div className="card-header">
           <Button onClick={() => saveForm(id, this.state.name)}
-                  className={classNames('save-btn is-outlined', {'is-success': isSaved, 'is-loading': isLoading})}>
+                  className={classNames('control-btn is-outlined', {'is-success': isSaved, 'is-loading': isLoading})}>
             Save
+          </Button>
+          <Button
+            className="control-btn is-link is-outlined"
+            onClick={e => {e.stopPropagation(); configure()}}> Configure
           </Button>
           <a onClick={() => deleteForm(id)} className="delete-icon card-header-icon" aria-label="more options">
             <span className="icon">
