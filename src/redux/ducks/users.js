@@ -50,6 +50,9 @@ export const loginUser = (email, password) => {
 	};
 };
 
+const getState = state => state.users;
+export const getUserId = state => getState(state).user._id;
+
 export default (state = DEFAULT_STATE, action) => {
 	switch (action.type) {
 		case LOGIN_SUCCESS:

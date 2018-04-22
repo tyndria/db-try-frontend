@@ -1,4 +1,5 @@
 import request from '../../utils/request';
+import {getUserId} from './users';
 
 export const FETCH_ALL = 'FETCH_ALL';
 export const REQUEST_PROJECTS = 'REQUEST_PROJECTS';
@@ -10,16 +11,18 @@ const DEFAULT_STATE = {
 };
 
 export const fetchAll = () => {
-  return (dispatch) => {
-    return request.fetch('/api/projects').then((data) => {
+  return (dispatch, getState) => {
+    const userId = getUserId(getState());
+    return request.fetch(`/api/projects/${userId}`).then((data) => {
       dispatch({type: RECEIVE_PROJECTS, payload: data});
     });
   };
 };
 
 export const addProject = (name) => {
-  return (dispatch) => {
-    return request.fetch('/api/projects', 'POST', {name}).then((data) => {
+  return (dispatch, getState) => {
+    const user = getUserId(getState());
+    return request.fetch('/api/projects', 'POST', {name, user}).then((data) => {
       dispatch({type: ADD_PROJECT, payload: data});
     });
   };
