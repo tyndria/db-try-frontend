@@ -3,8 +3,9 @@ import request from '../../utils/request';
 export const RUN_PROJECT = 'RUN_PROJECT';
 
 export const runProject = (projectId) => {
-  return (dispatch) => {
-    return request.fetch(`/api/projects/run/${projectId}`, 'GET').then((data) => {
+  return (dispatch, getState) => {
+  	const configs = getState().schemasConfiguration[projectId];
+    return request.fetch(`/api/projects/run/${projectId}`, 'POST', configs).then((data) => {
       dispatch({type: RUN_PROJECT, payload: data});
     });
   };

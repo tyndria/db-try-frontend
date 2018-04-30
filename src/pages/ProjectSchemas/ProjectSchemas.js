@@ -19,9 +19,10 @@ class ProjectSchemas extends Component {
 	}
 
   configure(schemeId) {
-    this.props.history.push({
+		const {history, location} = this.props;
+    history.push({
       pathname: '/projectConfiguration',
-      state: {schemeId}
+      state: {schemeId, projectId: location.state.id}
     })
   }
 

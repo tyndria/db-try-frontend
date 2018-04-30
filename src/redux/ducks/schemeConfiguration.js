@@ -35,12 +35,13 @@ export const changeField = (data) => ({
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case CHANGE_FIELD:
-      const {schemeId, path, value} = action;
-      const config = state[schemeId] || DEFAULT_CONFIG;
+      const {projectId, schemeId, path, value} = action;
+      const configs = state[projectId] || {};
+      const config = configs[schemeId] || DEFAULT_CONFIG;
       set(config, path, value);
       return {
         ...state,
-        [schemeId]: config
+        [projectId]: {...state[projectId], [schemeId]: config}
       };
     default:
       return state;

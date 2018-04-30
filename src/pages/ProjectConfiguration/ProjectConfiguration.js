@@ -73,8 +73,8 @@ class ProjectConfiguration extends Component {
   };
 }
 
-const mapDispatchToProps = (dispatch, {location: {state: {schemeId}}} )=> ({
- changeField: (path, value) => dispatch(changeField({schemeId, path, value}))
+const mapDispatchToProps = (dispatch, {location: {state: {schemeId, projectId}}} )=> ({
+ changeField: (path, value) => dispatch(changeField({projectId, schemeId, path, value}))
 });
 
 export default connect(null, mapDispatchToProps)(ProjectConfiguration);
