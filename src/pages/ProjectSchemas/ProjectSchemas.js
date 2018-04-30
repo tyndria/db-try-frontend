@@ -18,10 +18,10 @@ class ProjectSchemas extends Component {
 		this.props.loadSchemas();
 	}
 
-  configure() {
+  configure(schemeId) {
     this.props.history.push({
       pathname: '/projectConfiguration',
-      state: {}
+      state: {schemeId}
     })
   }
 
@@ -32,7 +32,6 @@ class ProjectSchemas extends Component {
 			updateField: this.props.updateField,
 			deleteField: this.props.deleteField,
 			saveForm: this.props.saveScheme,
-			configure: () => this.configure(),
 		};
 		const schemas = this.props.schemas;
 		const project = this.props.location.state;
@@ -51,6 +50,7 @@ class ProjectSchemas extends Component {
 							<SchemeForm key={schemeId}
 										id={schemeId}
 										fields={this.props.fields[schemeId]}
+										configure={() => this.configure(schemeId)}
 										className="column" {...{ ...schemeFunctions, ...schemas[schemeId]}}/>
 						)
 					}

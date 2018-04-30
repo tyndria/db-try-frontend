@@ -12,6 +12,7 @@ const Input = ({
                  placeholder,
                  onChange,
                  className,
+                 disabled,
                }) => (
   <div className={classNames('field', className)}>
     { label && <label className="label">{label}</label> }
@@ -21,6 +22,7 @@ const Input = ({
              defaultValue={value}
              placeholder={placeholder}
              onChange={onChange}
+             disabled={disabled}
              autoFocus
              {...this.props} />
       {

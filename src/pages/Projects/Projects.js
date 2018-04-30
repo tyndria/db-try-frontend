@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addProject, fetchAll} from "../../redux/ducks/projectList";
+import {addProject, fetchAll} from '../../redux/ducks/projectList';
 import {runProject} from '../../redux/ducks/projectStatistics';
 import {Roles} from '../../constants/roles';
 import './Project.css';

@@ -1,62 +1,80 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
+import {changeField} from '../../redux/ducks/schemeConfiguration';
+
+import Input from '../../components/Input';
+import RequestBox from '../../components/RequestBox/RequestBox';
 
 import './ProjectConfiguration.css';
 
-import Checkbox from '../../components/Checkbox/Checkbox';
-import Input from '../../components/Input';
-
 class ProjectConfiguration extends Component {
-  renderActionFieldElement() {
-    return (
-      <div className="tile is-child box">
-        <Checkbox labelClassName="is-size-4" onChange={() => {}} label="Read" checked={true} />
-        <div className="action-field">
-          <Checkbox
-            className="margin-auto use-id"
-            onChange={() => {
-            }}
-            label="By id"
-            checked={true} />
-          <span className="has-text-primary margin-auto">or</span>
-          <Input placeholder="By field" className="field-name" />
-        </div>
-      </div>
-    )
-  }
 
   render() {
+    const {changeField} = this.props;
+
     return (<div className="configuration page">
       <div className="columns is-marginless">
         <div className="column box">
           <div className="subtitle has-text-primary has-text-weight-semibold">Requests</div>
           <div className="tile is-ancestor">
             <div className="tile is-parent">
-              <div className="tile is-child box">
-                <Checkbox onChange={() => {
-                }} label="Create" checked={true} />
-              </div>
+              <RequestBox
+                label="Create"
+                showActionControlPanel={false}
+                onAllowChange={value => changeField('create.allow', value)}
+              />
             </div>
             <div className="tile is-parent">
-              {this.renderActionFieldElement()}
+              <RequestBox
+                label="Read"
+                onByIdChange={value => changeField('read.byId', value)}
+                onAllowChange={value => changeField('read.allow', value)}
+                onFieldChange={e => changeField('read.field', e.target.value)}
+              />
             </div>
           </div>
           <div className="tile is-ancestor">
             <div className="tile is-parent">
-              {this.renderActionFieldElement()}
+              <RequestBox
+                label="Delete"
+                onByIdChange={value => changeField('delete.byId', value)}
+                onAllowChange={value => changeField('delete.allow', value)}
+                onFieldChange={e => changeField('delete.field', e.target.value)}
+              />
             </div>
             <div className="tile is-parent">
-              {this.renderActionFieldElement()}
+              <RequestBox
+                label="Update"
+                onByIdChange={value => changeField('update.byId', value)}
+                onAllowChange={value => changeField('update.allow', value)}
+                onFieldChange={e => changeField('update.field', e.target.value)}
+              />
             </div>
           </div>
         </div>
         <div className="column box is-4">
           <p className="subtitle has-text-primary has-text-weight-semibold">Collections/Tables</p>
-          <Input type="number" label="Initial data count" hintText="The volume of initial data" />
-          <Input type="number" label="Loop count" hintText="Each of the request will be executed n times" />
+          <Input
+            type="number"
+            label="Initial data count"
+            hintText="The volume of initial data"
+            onChange={e => changeField('dataCount', e.target.value)}
+          />
+          <Input
+            type="number"
+            label="Loop count"
+            hintText="Each of the request will be executed n times"
+            onChange={e => changeField('loopCount', e.target.value)}
+          />
         </div>
       </div>
     </div>);
   };
 }
 
-export default ProjectConfiguration;
+const mapDispatchToProps = (dispatch, {location: {state: {schemeId}}} )=> ({
+ changeField: (path, value) => dispatch(changeField({schemeId, path, value}))
+});
+
+export default connect(null, mapDispatchToProps)(ProjectConfiguration);
