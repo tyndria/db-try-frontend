@@ -5,8 +5,8 @@ const CHANGE_FIELD = 'CHANGE_FIELD';
 const DEFAULT_STATE = {};
 
 const DEFAULT_CONFIG = {
-  dataCount: 0,
-  loopCount: 0,
+  dataCount: 10,
+  loopCount: 10,
   create: {
     allow: true,
   },
@@ -47,3 +47,9 @@ export default (state = DEFAULT_STATE, action) => {
       return state;
   }
 };
+
+export const getState = state => state.schemasConfiguration;
+export const getSchemeConfig = (state, projectId, schemeId) => {
+  const projectConfig = getState(state)[projectId];
+  return projectConfig && projectConfig[schemeId];
+}

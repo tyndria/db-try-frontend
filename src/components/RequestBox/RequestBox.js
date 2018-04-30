@@ -4,16 +4,18 @@ import Checkbox from '../Checkbox/Checkbox';
 import Input from '../Input';
 
 class RequestBox extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    const {allow = true, byId = true} = this.props.initialValues;
 
     this.state = {
-      doAction: true,
-      doById: true,
+      allow,
+      byId,
     }
 
     this.toggleCheckbox = this.toggleCheckbox.bind(this);
-    this.handleDoActionChange = this.handleDoActionChange.bind(this);
+    this.handleAllowChange = this.handleAllowChange.bind(this);
     this.handleByIdChange = this.handleByIdChange.bind(this);
   }
 
@@ -23,31 +25,37 @@ class RequestBox extends Component {
     }), callback)
   }
 
-  handleDoActionChange() {
-    this.toggleCheckbox('doAction', () => this.props.onAllowChange(this.state.doAction));
+  handleAllowChange() {
+    this.toggleCheckbox('allow', () => this.props.onAllowChange(this.state.allow));
   }
 
   handleByIdChange() {
-    this.toggleCheckbox('doById', () => this.props.onByIdChange(this.state.doById));
+    this.toggleCheckbox('byId', () => this.props.onByIdChange(this.state.byId));
   }
 
   render() {
-    const {label, onFieldChange, showActionControlPanel} = this.props;
-    const {doAction, doById} = this.state;
+    const {label, onFieldChange, showActionControlPanel, initialValues: {field}} = this.props;
+    const {allow, byId} = this.state;
 
     return (
       <div className="tile is-child box">
-        <Checkbox labelClassName="is-size-4" onChange={this.handleDoActionChange} label={label} checked={doAction} />
+        <Checkbox labelClassName="is-size-4" onChange={this.handleAllowChange} label={label} checked={allow} />
         {showActionControlPanel && <div className="action-field">
           <Checkbox
             className="margin-auto use-id"
             onChange={this.handleByIdChange}
             label="By id"
-            checked={doById}
-            disabled={!doAction}
+            checked={byId}
+            disabled={!allow}
           />
           <span className="has-text-primary margin-auto">or</span>
-          <Input placeholder="By field" className="field-name" onChange={onFieldChange} disabled={!doAction || doById} />
+          <Input
+            placeholder="By field"
+            className="field-name"
+            value={field}
+            onChange={onFieldChange}
+            disabled={!allow || byId}
+          />
         </div>}
       </div>
     )
@@ -60,9 +68,11 @@ RequestBox.propTypes = {
   onByIdChange: PropTypes.func,
   onFieldChange: PropTypes.func,
   showActionControlPanel: PropTypes.bool,
+  initialValues: PropTypes.object,
 }
 
 RequestBox.defaultProps = {
+  initialValues: {},
   showActionControlPanel: true,
   onByIdChange: () => {},
   onFieldChange: () => {},
