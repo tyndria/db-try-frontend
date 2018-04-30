@@ -20,7 +20,7 @@ const DEFAULT_CONFIG = {
     byId: true,
     field: '',
   },
-  delete: {
+  remove: {
     allow: true,
     byId: true,
     field: '',

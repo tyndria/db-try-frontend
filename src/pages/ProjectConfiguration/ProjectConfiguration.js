@@ -38,9 +38,9 @@ class ProjectConfiguration extends Component {
             <div className="tile is-parent">
               <RequestBox
                 label="Delete"
-                onByIdChange={value => changeField('delete.byId', value)}
-                onAllowChange={value => changeField('delete.allow', value)}
-                onFieldChange={e => changeField('delete.field', e.target.value)}
+                onByIdChange={value => changeField('remove.byId', value)}
+                onAllowChange={value => changeField('remove.allow', value)}
+                onFieldChange={e => changeField('remove.field', e.target.value)}
               />
             </div>
             <div className="tile is-parent">
