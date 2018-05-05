@@ -2,29 +2,25 @@ import React from 'react';
 import classNames from 'classnames';
 
 const Input = ({
-                 label,
-                 type,
-                 value,
-                 hintText,
-                 successClass,
-                 leftIconClass,
-                 rightIconClass,
-                 placeholder,
-                 onChange,
-                 className,
-                 disabled,
-               }) => (
+   label,
+   type,
+   value,
+   hintText,
+   successClass,
+   leftIconClass,
+   rightIconClass,
+   className,
+   autoFocus,
+   ...rest
+ }) => (
   <div className={classNames('field', className)}>
     { label && <label className="label">{label}</label> }
     <div className={classNames('control', {'has-icons-left': leftIconClass, 'has-icons-right': rightIconClass})}>
       <input className={classNames('input', successClass)}
              type={type || 'text'}
              defaultValue={value}
-             placeholder={placeholder}
-             onChange={onChange}
-             disabled={disabled}
-             autoFocus
-             {...this.props} />
+             autoFocus={autoFocus}
+             {...rest} />
       {
         leftIconClass &&
         <span className="icon is-small is-left">

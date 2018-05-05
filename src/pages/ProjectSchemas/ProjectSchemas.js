@@ -27,15 +27,17 @@ class ProjectSchemas extends Component {
   }
 
 	render() {
+		const {deleteScheme, addEmptyField, updateField, deleteField, saveScheme, schemas, location, fields} = this.props;
+
 		const schemeFunctions = {
-			deleteForm: this.props.deleteScheme,
-			addField: this.props.addEmptyField,
-			updateField: this.props.updateField,
-			deleteField: this.props.deleteField,
-			saveForm: this.props.saveScheme,
+			deleteForm: deleteScheme,
+			addField: addEmptyField,
+			saveForm: saveScheme,
+      updateField,
+      deleteField,
 		};
-		const schemas = this.props.schemas;
-		const project = this.props.location.state;
+
+		const project = location.state;
 		return (
 			<div className="project-schemas page">
 				<span className="project-control is-flex">
@@ -50,7 +52,7 @@ class ProjectSchemas extends Component {
 						Object.keys(schemas).map((schemeId) =>
 							<SchemeForm key={schemeId}
 										id={schemeId}
-										fields={this.props.fields[schemeId]}
+										fields={fields[schemeId]}
 										configure={() => this.configure(schemeId)}
 										className="column" {...{ ...schemeFunctions, ...schemas[schemeId]}}/>
 						)

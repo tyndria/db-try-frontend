@@ -3,6 +3,8 @@ import Input from '../Input';
 import Button from '../Button';
 import './SchemeField.css';
 
+const TYPES = ['String', 'Number', 'Boolean', 'Object', 'Id'];
+
 class SchemeField extends React.Component {
 	constructor(props) {
 		super(props);
@@ -37,10 +39,9 @@ class SchemeField extends React.Component {
 					<div className="field-body">
 						<div className="select">
 							<select value={type} onChange={(e) => this.onTypeChange(e)}>
-								<option>String</option>
-								<option>Number</option>
-								<option>Boolean</option>
-								<option>Object</option>
+								{TYPES.map((type) => (
+									<option>{type}</option>
+								))}
 							</select>
 						</div>
 					</div>

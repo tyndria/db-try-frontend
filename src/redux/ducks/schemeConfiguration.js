@@ -10,6 +10,9 @@ const DEFAULT_CONFIG = {
   create: {
     allow: true,
   },
+  populate: {
+    allow: true,
+  },
   read: {
     allow: true,
     byId: true,

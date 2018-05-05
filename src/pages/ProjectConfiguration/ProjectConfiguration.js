@@ -10,24 +10,31 @@ import RequestBox from '../../components/RequestBox/RequestBox';
 import './ProjectConfiguration.css';
 
 class ProjectConfiguration extends Component {
-
   render() {
-    const {changeField, initialValues: {dataCount, loopCount, create, read, update, remove}} = this.props;
+    const {changeField, initialValues: {dataCount, loopCount, create, read, update, remove, populate}} = this.props;
 
     return (<div className="configuration page">
       <div className="columns is-marginless">
         <div className="column box">
           <div className="subtitle has-text-primary has-text-weight-semibold">Requests</div>
           <div className="tile is-ancestor">
-            <div className="tile is-parent">
+            <div className="tile is-parent is-3">
               <RequestBox
                 label="Create"
+                showActionControlPanel={false}
+                initialValues={populate}
+                onAllowChange={value => changeField('populate.allow', value)}
+              />
+            </div>
+            <div className="tile is-parent is-3">
+              <RequestBox
+                label="Populate"
                 showActionControlPanel={false}
                 initialValues={create}
                 onAllowChange={value => changeField('create.allow', value)}
               />
             </div>
-            <div className="tile is-parent">
+            <div className="tile is-parent is-6">
               <RequestBox
                 label="Read"
                 initialValues={read}
