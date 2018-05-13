@@ -11,10 +11,12 @@ import './ProjectConfiguration.css';
 
 class ProjectConfiguration extends Component {
   render() {
-    const {changeField, initialValues: {dataCount, loopCount, create, read, update, remove, populate}} = this.props;
+    const {changeField, location, initialValues: {dataCount, loopCount, create, read, update, remove, populate}} = this.props;
+    const schemeName = location.state.schemeName;
 
     return (<div className="configuration page">
-      <div className="columns is-marginless">
+      <div className="scheme-name subtitle is-marginless has-text-centered"> {schemeName} </div>
+      <div className="control-panels columns is-marginless">
         <div className="column box">
           <div className="subtitle has-text-primary has-text-weight-semibold">Requests</div>
           <div className="tile is-ancestor">

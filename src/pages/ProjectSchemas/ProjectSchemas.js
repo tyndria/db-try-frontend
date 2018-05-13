@@ -18,11 +18,11 @@ class ProjectSchemas extends Component {
 		this.props.loadSchemas();
 	}
 
-  configure(schemeId) {
+  configure(schemeId, schemeName) {
 		const {history, location} = this.props;
     history.push({
       pathname: '/projectConfiguration',
-      state: {schemeId, projectId: location.state.id}
+      state: {schemeId, schemeName, projectId: location.state.id}
     })
   }
 
@@ -54,7 +54,7 @@ class ProjectSchemas extends Component {
 							<SchemeForm key={schemeId}
 										id={schemeId}
 										fields={fields[schemeId]}
-										configure={() => this.configure(schemeId)}
+										configure={() => this.configure(schemeId, schemas[schemeId].name)}
 										className="column" {...{ ...otherProps, ...schemas[schemeId]}}/>
 						)
 					}

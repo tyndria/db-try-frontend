@@ -69,7 +69,7 @@ class Login extends Component {
 
 							<form>
 								<Input placeholder="Your Login" onChange={(e) => this.onEmailChange(e)}
-									   autofocus=""/>
+									   autoFocus/>
 								<Input type="password" placeholder="Your Password"
 									   onChange={(e) => this.onPasswordChange(e)}/>
 								{!this.state.isLoginForm &&
