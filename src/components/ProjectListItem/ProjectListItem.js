@@ -8,7 +8,7 @@ import './ProjectListItem.css';
 const ProjectListItem = ({name, id, getStatistics, user}) => (
 	<span className="project-list-item panel-block is-active">
 		<Link to={{pathname: "/projectSchemas", state: {name, id}}}
-			  className={classNames({'disabled': !(user && user.role === Roles.Developer)})}>
+			  className={classNames({'disabled': !(user && user.role !== Roles.Client)})}>
 			<span className="panel-icon">
 				<i className="fa fa-book"/>
 			</span>{name}

@@ -1,7 +1,7 @@
 export const Roles = {
 	Client: 'client',
 	Developer: 'developer',
-	Lead: 'lead'
+	Administrator: 'administrator',
 };
 
 export default Roles;

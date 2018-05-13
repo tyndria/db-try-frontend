@@ -27,11 +27,11 @@ class Projects extends React.Component {
 		const {addProject, projects, user} = this.props;
 		return (
 			<div className="card project page">
-				{ user && user.role === Roles.Developer &&
+				{ user && user.role !== Roles.Client &&
 					<div className="option-text">Or</div>
 				}
 				<div className="columns project-panels">
-					{ user && user.role === Roles.Developer &&
+					{ user && user.role !== Roles.Client &&
 						<div className="column project-panel">
 							<Form title="Create Project" onClick={() => addProject(this.name)}>
 								<Input onChange={(event) => this.name = event.target.value}

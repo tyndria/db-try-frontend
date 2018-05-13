@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import Input from '../Input';
 import SchemeField from '../SchemeField/SchemeField.js';
 import Button from '../Button';
+import Roles from '../../constants/roles';
 import './SchemeForm.css';
 
 class SchemeForm extends React.Component {
@@ -26,18 +27,21 @@ class SchemeForm extends React.Component {
       updateField,
       isSaved,
       isLoading,
+      user,
       configure
     } = this.props;
 
     return (
       <div className="scheme-form card">
         <div className="card-header">
-          <Button onClick={() => saveForm(id, this.state.name)}
-                  className={classNames('control-btn is-outlined', {'is-success': isSaved, 'is-loading': isLoading})}>
+          <Button
+            onClick={() => saveForm(id, this.state.name)}
+            className={classNames('control-btn is-outlined', {'is-success': isSaved, 'is-loading': isLoading})}>
             Save
           </Button>
           <Button
             className="control-btn is-link is-outlined"
+            disabled={user.role !== Roles.Administrator}
             onClick={e => {e.stopPropagation(); configure()}}> Configure
           </Button>
           <a onClick={() => deleteForm(id)} className="delete-icon card-header-icon" aria-label="more options">

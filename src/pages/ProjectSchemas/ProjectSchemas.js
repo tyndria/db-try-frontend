@@ -27,14 +27,15 @@ class ProjectSchemas extends Component {
   }
 
 	render() {
-		const {deleteScheme, addEmptyField, updateField, deleteField, saveScheme, schemas, location, fields} = this.props;
+		const {deleteScheme, addEmptyField, updateField, deleteField, saveScheme, schemas, location, fields, user} = this.props;
 
-		const schemeFunctions = {
+		const otherProps = {
 			deleteForm: deleteScheme,
 			addField: addEmptyField,
 			saveForm: saveScheme,
       updateField,
       deleteField,
+			user,
 		};
 
 		const project = location.state;
@@ -54,7 +55,7 @@ class ProjectSchemas extends Component {
 										id={schemeId}
 										fields={fields[schemeId]}
 										configure={() => this.configure(schemeId)}
-										className="column" {...{ ...schemeFunctions, ...schemas[schemeId]}}/>
+										className="column" {...{ ...otherProps, ...schemas[schemeId]}}/>
 						)
 					}
 				</div>
@@ -65,7 +66,8 @@ class ProjectSchemas extends Component {
 
 const mapStateToProps = state => ({
 	schemas: state.projectSchemas.schemas,
-	fields: state.projectSchemas.fields
+	fields: state.projectSchemas.fields,
+  user: state.users.user
 });
 
 const mapDispatchToProps = (dispatch, {location}) => ({
