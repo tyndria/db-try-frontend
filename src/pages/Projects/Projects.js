@@ -19,7 +19,7 @@ class Projects extends React.Component {
 
 		this.props.history.push({
 			pathname: '/projectStatistics',
-			state: {}
+			state: {projectId: id}
 		})
 	}
 
@@ -42,12 +42,12 @@ class Projects extends React.Component {
 					<div className="column">
 						<List title="Choose Project">
 							{
-								projects.map((item) =>
-									<ProjectListItem name={item.name}
-													 key={item.id}
-													 id={item.id}
+								projects.map(({name, id}) =>
+									<ProjectListItem name={name}
+													 key={id}
+													 id={id}
 													 user={user}
-													 getStatistics={e => this.runProject(item.id)}/>
+													 getStatistics={e => this.runProject(id)}/>
 								)
 							}
 						</List>

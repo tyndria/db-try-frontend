@@ -1,0 +1,17 @@
+@import '../../variables.scss';
+
+.log {
+  border-bottom: 1px solid $primary;
+
+  .timestamp {
+    color: $primary
+  }
+
+  .collection {
+    color: hsl(332, 100%, 61%)
+  }
+
+  .method {
+    color: hsl(240, 97%, 44%)
+  }
+}

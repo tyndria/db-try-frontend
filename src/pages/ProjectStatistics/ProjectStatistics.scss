@@ -1,12 +1,17 @@
-.chart-container {
+.statistics {
   height: 100%;
 
-  .loader {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    height: 4rem;
-    animation: spinAround 1200ms infinite linear;
-    width: 4rem;
+  .chart-container {
+    height: 100%;
+    position: relative;
+
+    .loader {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      height: 4rem;
+      animation: spinAround 1200ms infinite linear;
+      width: 4rem;
+    }
   }
 }

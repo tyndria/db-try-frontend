@@ -1,0 +1,12 @@
+.logs {
+  height: 100%;
+  display: flex;
+
+  .list {
+    overflow: auto;
+  }
+
+  .load-logs {
+    margin: auto;
+  }
+}

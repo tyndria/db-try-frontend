@@ -1,14 +1,17 @@
-import fetch from 'isomorphic-fetch';
+import fetcher from 'isomorphic-fetch';
 
 export const DEFAULT_OPTIONS = {
 	mode: 'cors',
 	headers: {
 		Accept: 'application/json',
 		'Content-Type': 'application/json',
-	}
+	},
+  credentials: 'same-origin',
 };
 
-export const BACKEND_URL = 'https://dbtry-mongo-db.herokuapp.com';
+// export const BACKEND_URL = 'https://dbtry-mongo-db.herokuapp.com';
+
+export const BACKEND_URL = 'http://localhost:8080';
 
 class Request {
 	fetch = (url, method = 'GET', rawBody = null) =>
@@ -18,12 +21,12 @@ class Request {
 			}
 
 			const options = { ...DEFAULT_OPTIONS, method };
-			options.headers.Cookie = this.cookie;
+
 			if (rawBody) {
 				options.body = JSON.stringify(rawBody);
 			}
 
-			fetch(`${BACKEND_URL}${url}`, options)
+      fetcher(`${BACKEND_URL}${url}`, options)
 				.then(response => {
 					const contentType = response.headers.get('content-type');
 
