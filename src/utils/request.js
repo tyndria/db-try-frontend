@@ -9,9 +9,7 @@ export const DEFAULT_OPTIONS = {
   credentials: 'same-origin',
 };
 
-// export const BACKEND_URL = 'https://dbtry-mongo-db.herokuapp.com';
-
-export const BACKEND_URL = 'http://localhost:8080';
+export const BACKEND_URL = 'https://dbtry-mongo-db.herokuapp.com';
 
 class Request {
 	fetch = (url, method = 'GET', rawBody = null) =>
