@@ -1,9 +1,15 @@
 .logs {
   height: 100%;
+  flex-direction: column;
   display: flex;
 
   .list {
     overflow: auto;
+  }
+
+  .search {
+    max-width: 250px;
+    margin-bottom: 10px;
   }
 
   .load-logs {
